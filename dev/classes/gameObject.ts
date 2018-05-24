@@ -2,6 +2,7 @@ class gameObject implements iDrawable {
 
     public div : HTMLElement;
     public body : HTMLElement;
+    public name: string;
     public x : number;
     public y : number;
     public height : number;

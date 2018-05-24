@@ -1,3 +1,6 @@
+/// <reference path="./factory/enemyFactory.ts" />
+
+
 class Game {
 
     private static instance: Game;
@@ -5,18 +8,26 @@ class Game {
     private hero  : Hero
     private enemy : Enemy;
 
+    public enemiesArray = [];
+    public heroesArray = [];
+
     constructor() {
-        this.hero = new Hero(this, 900, 650, 67, 67, 10, 3, 2);
-        this.enemy = new Enemy(this, 200, 650, 75, 105, 10, 3, 1, 80, 2);
+        const kamek = enemyFactory.createEnemy(this, 'Kamek', 200, 650, 75, 105, 10, 3, 1, 100, 5);
+        this.enemiesArray.push(kamek);
+
+        const hero = heroFactory.createHero(this, 'Paladin', 900, 650, 67, 67, 10, 3, 2);
+        this.heroesArray.push(hero);
 
         requestAnimationFrame(() => this.gameLoop());
     }
 
     private gameLoop(){
-        this.enemy.update(this.hero, this.enemy);
+        for(let i = 0; i < this.enemiesArray.length; i++) {
+            this.enemy.update(this.heroesArray[i], this.enemiesArray[i]);
+        }
 
         //collision
-        if(Utils.checkCollision(this.hero, this.enemy)) {
+        if(Utils.checkCollision(this.heroesArray[0], this.enemiesArray[0])) {
             
         }
 
