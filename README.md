@@ -1,8 +1,8 @@
-# Deelopdracht OP4
+# Herkansing OP8 (Leerjaar 2)
 
 ## Over
 
-Dit project is gemaakt voor Programmeren OP4. Je speelt in deze game een hero, die enemies moet verslaan. Alles wat momenteel gecomment staat in de code, werkt nog niet.
+Dit project is gemaakt voor Programmeren OP4, van leerjaar 2. Je speelt in deze game een hero, die enemies moet verslaan. Alles wat momenteel gecomment staat in de code, werkt nog niet.
 
 ### Controls
 
@@ -12,7 +12,7 @@ Dit project is gemaakt voor Programmeren OP4. Je speelt in deze game een hero, d
 
 ## Door
 
-Dit project is gemaakt door Roy Sijnesael uit MT2B. 
+Dit project is gemaakt door Roy Sijnesael uit MT3B. 
 
 ## Installatie
 
