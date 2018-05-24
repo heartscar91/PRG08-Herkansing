@@ -27,7 +27,7 @@ class Enemy extends gameObject implements Observable {
     }
 
     public update(g1: gameObject, g2: gameObject) {
-        if(Utils.checkCollision(g1, g2)) {
+        if(Utils.checkCollision(g1, g2) && this.health > 0) {
             this.hit();
         }
     }
