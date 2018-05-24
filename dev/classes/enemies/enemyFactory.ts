@@ -2,8 +2,6 @@
 
   protected speed : number;
   protected movement : number;
-  protected hero : Hero;
-  private enemy : Enemy;
   public observers : Array<Observer>;
 
   constructor(game : Game, name: string, x : number, y : number, height : number, width : number, health : number, power : number, defense : number, movement: number, speed: number) {
@@ -42,7 +40,8 @@
       if(this.health <= 0) {
           this.behaviour.enemyUpdate(false);
           let g : Game = Game.getInstance();
-          this.enemy = new Enemy(g, 200, 650, 75, 105, 10, 3, 1, 100, 5);
+          
+          let enemy = new enemyFactory(g, 'Kamek', 100, 250, 75, 105, 10, 3, 1, 100, 5);
       } else if(this.health > 0) {
           this.behaviour.enemyUpdate(true);   
       }
@@ -89,9 +88,9 @@
           audio.play();
       }
 
-      let power : Hero = Hero.getPower();
+      console.log(heroFactory.getPower());
   
-      let calc = new Utils.Calculator(this.defense, power)
+      let calc = new Utils.Calculator(this.defense, heroFactory.getPower())
 
       this.health -= calc.damage;
       this.showHealth();

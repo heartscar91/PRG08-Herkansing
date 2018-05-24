@@ -43,6 +43,7 @@ class heroFactory extends gameObject implements Observer {
   // keyboard input zorgt dat de snelheid wordt aangepast
   protected onKeyDown(event:KeyboardEvent) : void {
 
+    if(this.name === 'Paladin')
       // console.log(event.keyCode); (Om key te checken)
       switch(event.keyCode){
           case 38: //Omhoog (pijltijestoetsen)
@@ -74,6 +75,35 @@ class heroFactory extends gameObject implements Observer {
               this.inventory();
           break;
       }
+
+      else
+        switch(event.keyCode){
+            case 87: //Omhoog (W)
+                this.y -= 10;
+                this.div.style.transform ="translate(" + this.x + "px," + this.y + "px)";
+                this.div.style.background = "url(./images/hero-front.png)";
+            break;
+            case 68: //Rechts (D)
+                this.x += 10;
+                this.div.style.transform ="translate(" + this.x + "px," + this.y + "px)";
+                this.div.style.background = "url(./images/hero.png) -66px -134px";
+            break;
+            case 40: //Naar beneden (S)
+                this.y += 10;
+                this.div.style.transform ="translate(" + this.x + "px," + this.y + "px)";
+                this.div.style.background = "url(./images/hero-front.png)";
+            break;
+            case 65: //Links (A)
+                this.x -= 10;
+                this.div.style.transform ="translate(" + this.x + "px," + this.y + "px)";
+                this.div.style.background = "url(./images/hero.png) -66px -68px";
+            break;
+            case 18:
+                //Valt aan met alt
+                this.attack();
+            break;
+        }
+
   }
 
   public powerCalc() {
