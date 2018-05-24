@@ -1,0 +1,134 @@
+* {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 0;
+  margin: 0 auto;
+}
+
+body { 
+  background: url(../images/background.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body * {
+    position: absolute;
+    display: block;
+    margin: 0px; 
+    padding:0px;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+}
+
+hero {
+  background: url(../images/hero.png) -66px 0;
+  width: 67px; 
+  height: 67px;
+}
+
+enemy {
+  background: url(../images/enemy.png) -0px -0px;
+  width: 105px; 
+  height: 75px;
+}
+
+healthBar {
+  width: 100px;
+  height: 20px;
+  color: white;
+  font-size: 18px;
+  margin-top: -25px;
+  border: 2px solid black;
+}
+
+healthBar p {
+  width: 100%;
+  background-color: red;
+  text-align: center;
+  font-size: 13px;
+}
+
+#inventory {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  opacity: 0.7;
+}
+
+#inventory h1 {
+  color: white;
+  opacity: 1;
+  left: 20%;
+  top: 10%;
+}
+
+#inventory h3 {
+  color: white;
+  opacity: 1;
+  left: 20%;
+  top: 10%;
+}
+
+#inventory ul {
+  top: 15%;
+  left: 20%;
+}
+
+#inventory ul li {
+  width: 50px;
+  height: 50px;
+  display: inline;
+}
+
+#inventory ul li img {
+  width: 50px;
+}
+
+#inventory ul li img:hover {
+  cursor: pointer;
+  background: white;
+}
+
+#items {
+  left: 20%;
+  top: 10%;
+  width: 50%;
+  height: 50%;
+}
+
+#items img {
+  width: 50px;
+  top: 10%;
+}
+
+sword {
+  height: 50px;
+  width: 50px;
+  background: url(../images/swordE.png);
+  transform: rotate(-20deg);
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+.open {
+  display: block;
+}
+
+.closed {
+  display: none;
+}
+
+.equipped {
+  background: white;
+}
+
+.unequipped {
+  background: none;
+}
+
+#status {
+  color: white;
+  position: relative;
+}
