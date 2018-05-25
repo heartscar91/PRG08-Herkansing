@@ -1,12 +1,15 @@
 namespace Utils {
     export class Calculator {
-        constructor() {
-            this.calcDamage();
+        public damage : number;
+
+        constructor(defense: number, power : number) {
+            this.damage = this.calcDamage(defense, power);
         }
 
-        private calcDamage(){
-            // let damage = 4;
-            // return damage.toString();
+        private calcDamage(defense: number, power: number) : number{
+            this.damage = power - defense;
+            // console.log(power + ' - ' + defense + ' = ' + this.damage);
+            return this.damage;
         }
     }
 }

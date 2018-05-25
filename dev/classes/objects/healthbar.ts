@@ -11,10 +11,6 @@ class Healthbar {
 
         this.p = document.createElement('p');
         this.div.appendChild(this.p);
-        this.p.innerHTML = health;
+        this.p.innerHTML = health.toString();
     }
-
-    // public change() {
-    //     this.div.style.width = '90%';
-    // }
 }
