@@ -3,41 +3,49 @@ class Game {
     private static instance: Game;
     private container : HTMLElement;
 
-    public enemiesArray = [];
-    public heroesArray = [];
+    public enemies : Array<enemyFactory> = new Array<enemyFactory>();
+    public heroes : Array<heroFactory> = new Array<heroFactory>();
 
     constructor(type : boolean) {
-        console.log(type);
-        if(type) {
-            const kamek = enemyFactory.createEnemy(this, 'Kamek', 200, 650, 75, 105, 10, 3, 1, 100, 5);
-            this.enemiesArray.push(kamek);
-    
+        let interval = setInterval(()=> this.spawnEnemy(), 3000);
+
+        // Multiplayer spawns two heroes
+        if(type) {    
             const paladin = heroFactory.createHero(this, 'Paladin', 900, 650, 67, 67, 10, 3, 2);
-            this.heroesArray.push(paladin);
+            this.heroes.push(paladin);
 
             const priest = heroFactory.createHero(this, 'Priest', 600, 350, 67, 67, 10, 3, 2);
-            this.heroesArray.push(priest);
+            this.heroes.push(priest);
         }
 
+        // Singleplayer spawns a single heroes
         else {
-            const kamek = enemyFactory.createEnemy(this, 'Kamek', 200, 650, 75, 105, 10, 3, 1, 100, 5);
-            this.enemiesArray.push(kamek);
-
             const hero = heroFactory.createHero(this, 'Paladin', 900, 650, 67, 67, 10, 3, 2);
-            this.heroesArray.push(hero);
+            this.heroes.push(hero);
         }
 
         requestAnimationFrame(() => this.gameLoop());
     }
 
-    private gameLoop(){
-        for(let i = 0; i < this.enemiesArray.length; i++) {
-            this.enemy.update(this.heroesArray[i], this.enemiesArray[i]);
-        }
+    public spawnEnemy(){
+        let randomX = Math.floor((Math.random() * (window.innerWidth)) - 50);
+        let randomY = Math.floor((Math.random() * (window.innerHeight)) - 50);
+        this.enemies.push(
+            enemyFactory.createEnemy(this, 'Kamek', randomX, randomY, 75, 105, 10, 3, 1, 100, 5)
+        );
+    }
 
-        //collision
-        if(Utils.checkCollision(this.heroesArray[0], this.enemiesArray[0])) {
-            
+    private gameLoop(){
+        for(let i = 0; i < this.enemies.length; i++) {
+            this.enemies[i].update(this.heroes[i], this.enemies[i]);
+        }
+      
+        for(let enemy of this.enemies){
+            for(let hero of this.heroes){
+                if(Utils.checkCollision(hero, enemy) && enemy.health > 0) {
+                    enemy.hit(hero.getPower());
+                }
+            }
         }
 
         requestAnimationFrame(() => this.gameLoop());
@@ -54,5 +62,6 @@ class Game {
 
 // load
 window.addEventListener("load", function() {
-    let g : Game = Game.getInstance(confirm('Multiplayer?'));
+    let g : Game = Game.getInstance(false);
+    // let g : Game = Game.getInstance(confirm('Multiplayer?'));
 });

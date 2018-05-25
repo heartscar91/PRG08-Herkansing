@@ -3,7 +3,6 @@ namespace Utils {
         public damage : number;
 
         constructor(defense: number, power : number) {
-            console.log(defense, power)
             this.damage = this.calcDamage(defense, power);
         }
 

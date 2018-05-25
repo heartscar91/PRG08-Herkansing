@@ -22,7 +22,7 @@
       this.showHealth();
       this.draw();
 
-      // setInterval( (() => this.move(1,4)), 100);
+    //   setInterval( (() => this.move(1,4)), 100);
       this.div.addEventListener("click", (e) => this.hit());
   }
 
@@ -39,9 +39,6 @@
   public statusUpdate() {
       if(this.health <= 0) {
           this.behaviour.enemyUpdate(false);
-          let g : Game = Game.getInstance();
-          
-          let enemy = new enemyFactory(g, 'Kamek', 100, 250, 75, 105, 10, 3, 1, 100, 5);
       } else if(this.health > 0) {
           this.behaviour.enemyUpdate(true);   
       }
@@ -72,7 +69,7 @@
       }
   }
 
-  private hit() : void {
+  public hit(heroPower: number) : void {
       let sword = document.getElementById('sword');
 
       if(this.health >= 1) {
@@ -87,10 +84,8 @@
           let audio = new Audio('./sounds/defeat.wav');
           audio.play();
       }
-
-      console.log(heroFactory.getPower());
   
-      let calc = new Utils.Calculator(this.defense, heroFactory.getPower())
+      let calc = new Utils.Calculator(this.defense, heroPower)
 
       this.health -= calc.damage;
       this.showHealth();
@@ -115,7 +110,7 @@
 
   public unsubscribe(o : Observer) : void {
       for(let o of this.observers) {
-          this.observers.notify();
+          o.notify();
       }
   }
 }

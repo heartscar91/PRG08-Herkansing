@@ -111,7 +111,7 @@ class heroFactory extends gameObject implements Observer {
   }
 
   private showHealth() : void {
-      let healthBar = new Healthbar(this.div, this.health);
+      let healthBar = new Healthbar(this.div, this.health,);
       
       if (this.health == 0) {
           healthBar.innerHTML = this.health;
@@ -175,7 +175,7 @@ class heroFactory extends gameObject implements Observer {
       console.log('lol');
   }
 
-  public static getPower() {
-      return 5;
+  public getPower() {
+      return this.power;
   }
 }
